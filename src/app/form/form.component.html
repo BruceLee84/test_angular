@@ -1,0 +1,85 @@
+<div class="row mt-3 mx-3" style="margin-top:25px ;">
+    <div class="col-md-9 justify-content-center">
+      <div class="card card-custom pb-4">
+        <div class="card-body mt-0 mx-5">
+          <div class="text-center mb-3 pb-2 mt-3">
+            <h4 style="color: #495057 ;">Templete Driven Forms</h4>
+          </div>
+  
+          <form class="mb-0" (ngSubmit)="onSubmit(userForm)"  #userForm="ngForm">
+  
+            <div class="row mb-4">
+              <div class="col">
+                <div class="form-outline">
+                  <label class="form-label" for="typeName">Name</label>
+                  <input type="name" class="form-control" id="typeName" class="form-control input-custom"
+                   ngModel name="name" required  #name="ngModel"
+                   />
+                   <p class="help-block" *ngIf="!name.valid && name.touched">please enter the Name</p>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-outline">
+                  <label class="form-label" for="typeEmail">Email</label>
+                  <input  type="email" class="form-control" id="typeEmail" class="form-control input-custom"
+                  pattern="[a-za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
+                  ngModel  name="email" required #email="ngModel" />
+                        <div *ngIf="email.touched && email.invalid">
+                          <p *ngIf="email.errors?.['required']">email is a required field!</p>
+                          <p *ngIf="email.errors?.['pattern']">this is not a valid email!!!</p>
+                      </div>
+                  <!-- <input type="email" class="form-control" id="typeEmail" class="form-control input-custom"
+                  ngModel name="email" required email #email="ngModel"
+                  />
+                  <p class="help-block" *ngIf="!email.valid && email.touched">please enter the Email</p> -->
+                </div>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col">
+                <div class="form-outline">
+                  <label for="inputState">State</label>
+                  <select id="inputState" class="form-control" ngModel name="state" required>
+                  <option selected>Choose...</option>
+                  <option *ngFor="let s of state" selected>{{s.state}}</option>
+                  </select> 
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-outline">
+                  <label class="form-label" for="form9Example2">Password</label>
+                  <input type="pass" class="form-control" id="form9Example2" class="form-control input-custom"
+                  ngModel name="pass" required 
+                  />
+                </div>
+              </div>
+            </div>         
+            <div class="float-end ">
+  
+              <!-- Submit button -->
+              <button type="submit" class="btn btn-primary btn-rounded"
+              [disabled]="userForm.invalid"
+              >Register</button>
+            </div>
+            <br><br>
+  
+            <div class="float-end ">
+  
+             
+              <button type="button" class="btn btn-primary btn-rounded"
+              (click)="setDefaultValue()">setDefaultValue</button>
+            </div>
+            <br><br>
+  
+            <div class="float-end ">
+  
+              <!-- Submit button -->
+              <button type="button" class="btn btn-primary btn-rounded"
+              (click)="patchValue()">patchValue</button>
+            </div>
+  
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
